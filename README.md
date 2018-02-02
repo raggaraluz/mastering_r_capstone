@@ -66,15 +66,15 @@ clean <- eq_clean_data(raw) %>%
   eq_location_clean()
 
 knitr::kable(clean %>%
-               select(DATE, LATITUDE, LONGITUDE, LOCATION_NAME) %>%
+               select(DATE, LATITUDE, LONGITUDE, LOCATION_NAME, EQ_PRIMARY) %>%
                tail)
 ```
 
-| DATE       | LATITUDE | LONGITUDE | LOCATION\_NAME |
-| :--------- | -------: | --------: | :------------- |
-| 2018-01-10 |   17.469 |  \-83.520 | Honduras       |
-| 2018-01-11 |   33.764 |    45.749 | Kermanshah     |
-| 2018-01-14 | \-15.776 |  \-74.744 | Arequipa       |
-| 2018-01-23 |  \-7.196 |   105.918 | Banten         |
-| 2018-01-23 |   56.046 | \-149.073 | Kodiak Island  |
-| 2018-01-31 |   36.543 |    70.816 | Baluchistan    |
+| DATE       | LATITUDE | LONGITUDE | LOCATION\_NAME | EQ\_PRIMARY |
+| :--------- | -------: | --------: | :------------- | ----------: |
+| 2018-01-10 |   17.469 |  \-83.520 | Honduras       |         7.6 |
+| 2018-01-11 |   33.764 |    45.749 | Kermanshah     |         5.5 |
+| 2018-01-14 | \-15.776 |  \-74.744 | Arequipa       |         7.1 |
+| 2018-01-23 |  \-7.196 |   105.918 | Banten         |         6.0 |
+| 2018-01-23 |   56.046 | \-149.073 | Kodiak Island  |         7.9 |
+| 2018-01-31 |   36.543 |    70.816 | Baluchistan    |         6.1 |

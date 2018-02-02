@@ -57,6 +57,6 @@ clean <- eq_clean_data(raw) %>%
   eq_location_clean()
 
 knitr::kable(clean %>%
-               select(DATE, LATITUDE, LONGITUDE, LOCATION_NAME) %>%
+               select(DATE, LATITUDE, LONGITUDE, LOCATION_NAME, EQ_PRIMARY) %>%
                tail)
 ``` 
