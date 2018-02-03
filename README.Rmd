@@ -59,4 +59,27 @@ clean <- eq_clean_data(raw) %>%
 knitr::kable(clean %>%
                select(DATE, LATITUDE, LONGITUDE, LOCATION_NAME, EQ_PRIMARY) %>%
                tail)
+```
+
+## Timeline geoms
+
+In this package are available two geoms that can be used to plot earthquake data.
+
+The first geom, `geom_timeline()` is used for plotting a time line of earthquakes ranging from xmin to xmax dates, with a point for each earthquake. Optional aesthetics include color, size and alpha. The x aesthetic is a date and an optional y aesthetic is a factor indicating some stratification for multiple lines.
+
+```{r geom_timeline}
+library(ggplot2)
+library(lubridate)
+clean %>%
+  filter(COUNTRY %in% c('USA', 'CHINA')) %>%
+
+  ggplot(aes(x = DATE, y = COUNTRY, size=)) +
+    geom_point() +
+    xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
+    theme_minimal() + theme(panel.grid.minor.x = element_blank(),
+                            panel.grid.major.x = element_blank(),
+                            axis.line.y = element_blank(),
+                            axis.title.y = element_blank(),
+                            axis.line.x = element_line(),
+                            axis.ticks.x = element_line())
 ``` 
