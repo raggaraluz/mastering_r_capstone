@@ -73,9 +73,45 @@ library(lubridate)
 clean %>%
   filter(COUNTRY %in% c('USA', 'CHINA')) %>%
 
-  ggplot(aes(x = DATE, y = COUNTRY, size=)) +
-    geom_point() +
+  ggplot(aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
+    geom_point(alpha = 0.25) +
     xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
+    scale_size_continuous(range = c(0,3)) + 
+    theme_minimal() + theme(panel.grid.minor.x = element_blank(),
+                            panel.grid.major.x = element_blank(),
+                            axis.line.y = element_blank(),
+                            axis.title.y = element_blank(),
+                            axis.line.x = element_line(),
+                            axis.ticks.x = element_line())
+
+clean %>%
+  filter(COUNTRY %in% c('USA', 'CHINA')) %>%
+
+  ggplot(aes(x = DATE, size=EQ_PRIMARY, fill = DEATHS)) +
+    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) # +
+
+
+clean %>%
+  filter(COUNTRY %in% c('USA', 'CHINA')) %>%
+
+  ggplot(aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
+    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
+    xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
+    scale_size_continuous(range = c(0,3)) + 
+    theme_minimal() + theme(panel.grid.minor.x = element_blank(),
+                            panel.grid.major.x = element_blank(),
+                            axis.line.y = element_blank(),
+                            axis.title.y = element_blank(),
+                            axis.line.x = element_line(),
+                            axis.ticks.x = element_line())
+
+clean %>%
+  filter(COUNTRY %in% c('USA', 'CHINA')) %>%
+
+  ggplot(aes(x = DATE, y = COUNTRY, fill = DEATHS)) +
+    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
+    xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
+    scale_size_continuous(range = c(0,3)) + 
     theme_minimal() + theme(panel.grid.minor.x = element_blank(),
                             panel.grid.major.x = element_blank(),
                             axis.line.y = element_blank(),

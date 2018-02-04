@@ -2,4 +2,5 @@
 
 export(eq_clean_data)
 export(eq_location_clean)
+export(geom_timeline)
 importFrom(magrittr,"%>%")

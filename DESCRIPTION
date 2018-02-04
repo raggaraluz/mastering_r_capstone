@@ -13,5 +13,7 @@ RoxygenNote: 6.0.1
 Imports: dplyr,
   lubridate,
   magrittr,
-  stringr
+  stringr,
+  ggplot2,
+  grid
 
