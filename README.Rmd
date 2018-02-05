@@ -42,7 +42,7 @@ devtools::install_github("raggaraluz/mastering_r_capstone")
 
 Data can be downloaded from NOAA Significant Earthquake Database as TSV and converted to a data frame:
 
-```{r}
+```{r, cache = TRUE}
 library(readr)
 
 location <- 'https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt'
@@ -74,48 +74,12 @@ clean %>%
   filter(COUNTRY %in% c('USA', 'CHINA')) %>%
 
   ggplot(aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
-    geom_point(alpha = 0.25) +
-    xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
-    scale_size_continuous(range = c(0,3)) + 
-    theme_minimal() + theme(panel.grid.minor.x = element_blank(),
-                            panel.grid.major.x = element_blank(),
-                            axis.line.y = element_blank(),
-                            axis.title.y = element_blank(),
-                            axis.line.x = element_line(),
-                            axis.ticks.x = element_line())
-
-clean %>%
-  filter(COUNTRY %in% c('USA', 'CHINA')) %>%
-
-  ggplot(aes(x = DATE, size=EQ_PRIMARY, fill = DEATHS)) +
-    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) # +
-
-
-clean %>%
-  filter(COUNTRY %in% c('USA', 'CHINA')) %>%
-
-  ggplot(aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
     geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
-    xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
-    scale_size_continuous(range = c(0,3)) + 
     theme_minimal() + theme(panel.grid.minor.x = element_blank(),
                             panel.grid.major.x = element_blank(),
                             axis.line.y = element_blank(),
                             axis.title.y = element_blank(),
                             axis.line.x = element_line(),
                             axis.ticks.x = element_line())
+```
 
-clean %>%
-  filter(COUNTRY %in% c('USA', 'CHINA')) %>%
-
-  ggplot(aes(x = DATE, y = COUNTRY, fill = DEATHS)) +
-    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
-    xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
-    scale_size_continuous(range = c(0,3)) + 
-    theme_minimal() + theme(panel.grid.minor.x = element_blank(),
-                            panel.grid.major.x = element_blank(),
-                            axis.line.y = element_blank(),
-                            axis.title.y = element_blank(),
-                            axis.line.x = element_line(),
-                            axis.ticks.x = element_line())
-``` 
