@@ -77,15 +77,13 @@ clean %>%
   filter(COUNTRY %in% c('USA', 'CHINA')) %>%
 
   ggplot(aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
-    geom_timeline(alpha = 0.25) +
-    xlim(ymd('2000-01-01'), ymd('2015-12-31')) +
+    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
     theme_minimal() + theme(panel.grid.minor.x = element_blank(),
                             panel.grid.major.x = element_blank(),
                             axis.line.y = element_blank(),
                             axis.title.y = element_blank(),
                             axis.line.x = element_line(),
                             axis.ticks.x = element_line())
-#> Warning: Removed 686 rows containing missing values (geom_timeline).
 ```
 
 ![](README-geom_timeline-1.png)
