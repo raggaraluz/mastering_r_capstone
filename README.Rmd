@@ -1,5 +1,6 @@
 ---
-output: github_document
+output:
+  github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -8,7 +9,7 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-",
+  fig.path = "man/figures/README-",
   message = FALSE
 )
 ```
@@ -92,7 +93,7 @@ clean %>%
   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>% 
   eq_map(annot_col = "DATE")
 ```
-![](README_figures/leaflet-date.png)
+![](man/figures/README-leaflet-date.png)
 
 In this case, the image is static, but it is a full interactive map in R.
 
@@ -104,8 +105,8 @@ clean %>%
   mutate(popup_text = eq_create_label(.)) %>% 
   eq_map(annot_col = "popup_text")
 ```
-![](README_figures/leaflet-popup-1.png)
-![](README_figures/leaflet-popup-2.png)
+![](man/figures/README-leaflet-popup-1.png)
+![](man/figures/README-leaflet-popup-2.png)
 
 Again, the image is static, but it is a full interactive map in R.
 

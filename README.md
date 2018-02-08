@@ -106,7 +106,7 @@ clean %>%
                             axis.ticks.x = element_line())
 ```
 
-![](README-geom_timeline-1.png)<!-- -->
+![](man/figures/README-geom_timeline-1.png)<!-- -->
 
 ## Maps
 
@@ -126,8 +126,10 @@ clean %>%
   eq_map(annot_col = "DATE")
 ```
 
-![](README_figures/leaflet-date.png) In this case, the image is static,
-but it is a full interactive map in R.
+![](man/figures/README-leaflet-date.png)
+
+In this case, the image is static, but it is a full interactive map in
+R.
 
 Finally a function called eq\_create\_label() is available, so that it
 takes the dataset as an argument and creates an HTML label that can be
@@ -147,6 +149,7 @@ clean %>%
   eq_map(annot_col = "popup_text")
 ```
 
-![](README_figures/leaflet-popup-1.png)
-![](README_figures/leaflet-popup-2.png) Again, the image is static, but
-it is a full interactive map in R.
+![](man/figures/README-leaflet-popup-1.png)
+![](man/figures/README-leaflet-popup-2.png)
+
+Again, the image is static, but it is a full interactive map in R.
