@@ -25,7 +25,7 @@ eq_clean_data <- function(raw) {
     dplyr::mutate(MONTH = dplyr::if_else(is.na(MONTH), 1L, MONTH), DAY = dplyr::if_else(is.na(DAY), 1L, DAY)) %>%
     # Nasty hack to support BC dates
     dplyr::mutate(DATE = lubridate::ymd(paste('0000', MONTH, DAY)) + lubridate::years(YEAR)) %>%
-    dplyr::mutate(LONGITUDE = as.numeric(LONGITUDE), latitude = as.numeric(LATITUDE))
+    dplyr::mutate(LONGITUDE = as.numeric(LONGITUDE), LATITUDE = as.numeric(LATITUDE))
 }
 
 
@@ -51,7 +51,7 @@ eq_clean_data <- function(raw) {
 eq_location_clean <- function(raw) {
   raw %>%
     # String everything before a colon
-    dplyr::mutate(LOCATION_NAME = stringr::str_replace(LOCATION_NAME, '^.*:', '')) %>%
+    dplyr::mutate(LOCATION_NAME = stringr::str_replace(LOCATION_NAME, '^.*?:', '')) %>%
     # Trim spaces and title case
     dplyr::mutate(LOCATION_NAME = stringr::str_trim(LOCATION_NAME)) %>%
     dplyr::mutate(LOCATION_NAME = stringr::str_to_title(LOCATION_NAME))

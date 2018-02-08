@@ -83,3 +83,30 @@ clean %>%
                             axis.ticks.x = element_line())
 ```
 
+## Maps
+
+There is a function called eq_map() that takes an argument data containing the filtered data frame with earthquakes to visualize. The function maps the epicenters (LATITUDE/LONGITUDE) and annotates each point with in pop up window containing annotation data stored in a column of the data frame. The user should be able to choose which column is used for the annotation in the pop-up with a function argument named annot_col. Each earthquake should be shown with a circle, and the radius of the circle should be proportional to the earthquake's magnitude (EQ_PRIMARY). One example of this function is:
+
+```{r eval=FALSE}
+clean %>%  
+  filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>% 
+  eq_map(annot_col = "DATE")
+```
+![](README_figures/leaflet-date.png)
+
+In this case, the image is static, but it is a full interactive map in R.
+
+Finally a function called eq_create_label() is available, so that it takes the dataset as an argument and creates an HTML label that can be used as the annotation text in the leaflet map. This function puts together a character string for each earthquake that will show the cleaned location (as cleaned by the eq_location_clean() function created in Module 1), the magnitude (EQ_PRIMARY), and the total number of deaths (TOTAL_DEATHS), with boldface labels for each ("Location", "Total deaths", and "Magnitude"). If an earthquake is missing values for any of these, both the label and the value should be skipped for that element of the tag. The resulting code is:
+
+```{r, eval=FALSE}
+clean %>% 
+  filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>% 
+  mutate(popup_text = eq_create_label(.)) %>% 
+  eq_map(annot_col = "popup_text")
+```
+![](README_figures/leaflet-popup-1.png)
+![](README_figures/leaflet-popup-2.png)
+
+Again, the image is static, but it is a full interactive map in R.
+
+

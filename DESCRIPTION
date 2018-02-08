@@ -15,5 +15,6 @@ Imports: dplyr,
   magrittr,
   stringr,
   ggplot2,
-  grid
+  grid,
+  leaflet
 
