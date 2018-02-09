@@ -1,3 +1,5 @@
+context('clean.R')
+
 test_that('eq_clean_data: Checking the clean data contains DATE column', {
   clean <- eq_clean_data(earthquake_data_raw)
   expect_match(names(clean), 'DATE', all=F)

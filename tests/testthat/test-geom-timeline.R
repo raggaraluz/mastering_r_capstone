@@ -1,3 +1,5 @@
+context('geom-timeline.R')
+
 test_that('geom_timeline: The selected dates are filtered', {
   date_min <- lubridate::ymd('1433-01-01')
   date_max <- lubridate::ymd('1622-01-01')

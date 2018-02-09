@@ -1,3 +1,5 @@
+context('filter.R')
+
 test_that('top_earthquakes: Top contains exactly n_max columns', {
   top <- top_earthquakes(earthquake_data, 6)
   expect_equal(nrow(top), 6)

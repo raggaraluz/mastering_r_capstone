@@ -34,7 +34,7 @@ geom_timeline_label <- function(mapping = NULL, data = NULL,
                       show.legend = NA,
                       inherit.aes = TRUE)
 {
-  layer(
+  ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = stat,
@@ -71,7 +71,7 @@ GeomTimelineLabel <- ggplot2::ggproto("GeomTimelineLabel", ggplot2::Geom,
                         just = 0,
                         rot = data$angle,
                         gp = grid::gpar(
-                          col = alpha(data$colour, data$alpha),
+                          col = ggplot2::alpha(data$colour, data$alpha),
                           fontsize = data$size * ggplot2::.pt,
                           fontfamily = data$family,
                           fontface = data$fontface,
