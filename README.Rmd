@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# earthquakes
+# earthquakes package [![Build Status](https://travis-ci.org/raggaraluz/mastering_r_capstone.svg?branch=master)](https://travis-ci.org/raggaraluz/mastering_r_capstone)
 
 The earthquakes package is created for the Mastering Software Development in R capstone from coursera.
 
@@ -146,3 +146,6 @@ clean %>%
 
 Again, the image is static, but it is a full interactive map in R.
 
+## Build status
+
+[![Build Status](https://travis-ci.org/raggaraluz/mastering_r_capstone.svg?branch=master)](https://travis-ci.org/raggaraluz/mastering_r_capstone)
