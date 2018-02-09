@@ -12,15 +12,11 @@ build_label(tag, content)
 \item{content}{values to be added after the tag}
 }
 \value{
-
+The labels to be displayed in the popup
 }
 \description{
 It builds the individual labels for the popup in the map.
 }
 \details{
 In the case of one value to be NA, the corresponding generated label is ''
-}
-\examples{
-build_label('Location:', c('Here', 'There', 'Nowhere'))
-
 }

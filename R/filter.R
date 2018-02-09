@@ -17,7 +17,7 @@
 #'
 top_earthquakes <- function(data, n_max, date_min = -Inf, date_max = Inf) {
   data %>%
-    dplyr::filter(between(DATE, date_min, date_max)) %>%
-    top_n(n_max, EQ_PRIMARY) %>%
-    slice(1:abs(n_max))
+    dplyr::filter(dplyr::between(DATE, date_min, date_max)) %>%
+    dplyr::top_n(n_max, EQ_PRIMARY) %>%
+    dplyr::slice(1:abs(n_max))
 }

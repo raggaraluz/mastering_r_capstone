@@ -27,7 +27,7 @@ missing values for any of these, both the label and the value should
 be skipped for that element of the tag
 }
 \examples{
-library(magrittr)
+library(dplyr)
 earthquake_data_raw \%>\%
   eq_clean_data \%>\%
   eq_location_clean \%>\%

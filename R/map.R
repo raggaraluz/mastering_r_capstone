@@ -56,7 +56,7 @@ eq_map <- function(data, annot_col) {
 #' @export
 #'
 #' @examples
-#' library(magrittr)
+#' library(dplyr)
 #' earthquake_data_raw %>%
 #'   eq_clean_data %>%
 #'   eq_location_clean %>%
@@ -83,11 +83,7 @@ eq_create_label <- function(data) {
 #' @param tag preffix, to be in bold. E.g. Location:
 #' @param content values to be added after the tag
 #'
-#' @return
-#'
-#' @examples
-#' build_label('Location:', c('Here', 'There', 'Nowhere'))
-#'
+#' @return The labels to be displayed in the popup
 build_label <- function(tag, content) {
   dplyr::if_else(is.na(content), '',
     paste0('<strong>', tag, '</strong> ', content, '<br>')
