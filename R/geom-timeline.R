@@ -42,7 +42,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #' Optional aesthetics include color, size, and alpha (for transparency).
 #'
 #'
-#' The x aesthetic is a date and an optional y aesthetic is a factor indicating
+# The x aesthetic is a date and an optional y aesthetic is a factor indicating
 #' some stratification in which case multiple time lines will be plotted for each
 #' level of the factor (e.g. country).
 #'
@@ -55,10 +55,11 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #'
 #' @rdname geom_timeline
 #' @examples
+#' library(ggplot2)
+#' library(lubridate)
 #' clean <- eq_clean_data(earthquake_data_raw)
 #' ggplot(clean, aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
-#'     geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
-
+#'     geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31'))
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
                              position = "identity", na.rm = FALSE,
                              show.legend = NA, inherit.aes = TRUE,

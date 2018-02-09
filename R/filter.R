@@ -1,3 +1,5 @@
+globalVariables(names = c('DATE', 'EQ_PRIMARY'))
+
 #' Filter earthquakes by magnitude
 #'
 #' Pick the top n_max earthquakes acoording to their magnitude.
@@ -13,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' top_10 <- top_earthquakes(earthquake_data_raw, 10)
+#' top_10 <- top_earthquakes(earthquake_data, 10)
 #'
 top_earthquakes <- function(data, n_max, date_min = -Inf, date_max = Inf) {
   data %>%

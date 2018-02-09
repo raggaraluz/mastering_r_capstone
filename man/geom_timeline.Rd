@@ -72,13 +72,14 @@ This geom is for plotting a time line of earthquakes ranging from xmin to xmax d
 with a point for each earthquake.
 Optional aesthetics include color, size, and alpha (for transparency).
 
-The x aesthetic is a date and an optional y aesthetic is a factor indicating
 some stratification in which case multiple time lines will be plotted for each
 level of the factor (e.g. country).
 }
 \examples{
+library(ggplot2)
+library(lubridate)
 clean <- eq_clean_data(earthquake_data_raw)
 ggplot(clean, aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
-    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
+    geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31'))
 }
 \keyword{datasets}

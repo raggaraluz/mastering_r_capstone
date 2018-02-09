@@ -26,9 +26,9 @@ and the radius of the circle should be proportional to the earthquake's
 magnitude (EQ_PRIMARY).
 }
 \examples{
-library(magrittr)
-earthquake_data_raw \%>\%
-  eq_clean_data \%>\%
+library(dplyr)
+library(lubridate)
+earthquake_data \%>\%
   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) \%>\%
   eq_map(annot_col = "DATE")
 

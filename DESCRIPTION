@@ -17,6 +17,7 @@ Imports: dplyr,
   ggplot2,
   grid,
   leaflet
+Depends: R (>= 2.10)
 Suggests: knitr,
     rmarkdown,
     testthat

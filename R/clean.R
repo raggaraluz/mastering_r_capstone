@@ -1,3 +1,5 @@
+globalVariables(names = c('MONTH', 'DAY', 'YEAR', 'LONGITUDE', 'LATITUDE', 'LOCATION_NAME'))
+
 #' Clean NOAA data
 #'
 #' Clean NOAA Significant Earthquake Database and store it into a dataframe

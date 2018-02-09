@@ -16,9 +16,9 @@
 #' @export
 #'
 #' @examples
-#' library(magrittr)
-#' earthquake_data_raw %>%
-#'   eq_clean_data %>%
+#' library(dplyr)
+#' library(lubridate)
+#' earthquake_data %>%
 #'   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>%
 #'   eq_map(annot_col = "DATE")
 #'
@@ -57,9 +57,8 @@ eq_map <- function(data, annot_col) {
 #'
 #' @examples
 #' library(dplyr)
-#' earthquake_data_raw %>%
-#'   eq_clean_data %>%
-#'   eq_location_clean %>%
+#' library(lubridate)
+#' earthquake_data %>%
 #'   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>%
 #'   mutate(popup_text = eq_create_label(.)) %>%
 #'   eq_map(annot_col = "popup_text")

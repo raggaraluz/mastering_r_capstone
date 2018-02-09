@@ -28,9 +28,8 @@ be skipped for that element of the tag
 }
 \examples{
 library(dplyr)
-earthquake_data_raw \%>\%
-  eq_clean_data \%>\%
-  eq_location_clean \%>\%
+library(lubridate)
+earthquake_data \%>\%
   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) \%>\%
   mutate(popup_text = eq_create_label(.)) \%>\%
   eq_map(annot_col = "popup_text")

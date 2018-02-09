@@ -70,16 +70,19 @@ takes the column name from which annotations will be obtained.
 }
 \examples{
 library(dplyr)
-clean <- eq_clean_data(earthquake_data_raw) \%>\%
-         eq_clean_location() \%>\%
-         filter(COUNTRY \%in\% c('USA', 'CHINA'))
+library(ggplot2)
+library(lubridate)
+data <- earthquake_data \%>\%
+        filter(COUNTRY \%in\% c('USA', 'CHINA'))
 
 labels <- data \%>\%
   top_earthquakes(10, ymd('2000-01-01'), ymd('2015-12-31'))
 
 
 ggplot(data, aes(x = DATE, y = COUNTRY, fill = DEATHS)) +
-  geom_timeline(aes(size = EQ_PRIMARY), alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
-  geom_timeline_label(data = labels, mapping = aes(x = DATE, y = COUNTRY, label = LOCATION_NAME))
+  geom_timeline(aes(size = EQ_PRIMARY), alpha = 0.25,
+                    xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
+  geom_timeline_label(data = labels,
+                      mapping = aes(x = DATE, y = COUNTRY, label = LOCATION_NAME))
 }
 \keyword{datasets}
