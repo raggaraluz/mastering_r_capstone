@@ -43,18 +43,23 @@ devtools::install_github("raggaraluz/mastering_r_capstone")
 
 Data can be downloaded from NOAA Significant Earthquake Database as TSV and converted to a data frame:
 
-```{r, cache = TRUE}
+```{r, eval = FALSE}
 library(readr)
 
 location <- 'https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt'
 raw <- read_tsv(location)
 ```
 
+Alternatively, a sample is stored into the package itself
+```{r}
+raw <- earthquakes::earthquake_data_raw
+```
+
 Then, the dataframe can be cleaned using the earthquakes package functions
 ```{r}
 library(earthquakes)
 library(dplyr)
-clean <- eq_clean_data(raw) %>%
+clean <- eq_clean_data(earthquake_data_raw) %>%
   eq_location_clean()
 
 knitr::kable(clean %>%
