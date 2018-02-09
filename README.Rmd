@@ -68,6 +68,13 @@ knitr::kable(clean %>%
                tail)
 ```
 
+
+Alternatively, the clean dataset is stored in the repository as well
+
+```{r}
+clean <- earthquake_data
+```
+
 ## Timeline geoms
 
 In this package are available two geoms that can be used to plot earthquake data.
