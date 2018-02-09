@@ -1,9 +1,10 @@
+#' @rdname geom_timeline
 #' @importFrom magrittr "%>%"
 GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
                      required_aes = c("x"),
                      non_missing_aes = c("size", "shape", "colour"),
                      default_aes = ggplot2::aes(
-                       y = 0.5, shape = 21, colour = "black", size = 1.5, fill = 'black',
+                       y = 0.25, shape = 21, colour = "black", size = 1.5, fill = 'black',
                        alpha = NA, stroke = 0.5
                      ),
                      extra_params = c("na.rm", "xmin", "xmax"),
@@ -52,6 +53,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #' @return Returns the geom for ggplot2 graphics
 #' @export
 #'
+#' @rdname geom_timeline
 #' @examples
 #'
 #' ggplot(data, aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +

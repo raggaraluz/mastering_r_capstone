@@ -83,3 +83,25 @@ clean %>%
                             axis.ticks.x = element_line())
 ```
 
+The second geom is called `geom_timeline_label()` and is used for adding annotations to the earthquake data. This geom adds a vertical line to each data point with a text annotation (e.g. the location of the earthquake) attached to each line. There should be an option to subset to n_max number of earthquakes, where we take the n_max largest (by magnitude) earthquakes. Aesthetics are `x`, which is the date of the earthquake and `label` which takes the column name from which annotations will be obtained.
+
+```{r}
+
+data <- clean %>%
+  filter(COUNTRY %in% c('USA', 'CHINA'))
+
+labels <- data %>%
+  top_earthquakes(10, ymd('2000-01-01'), ymd('2015-12-31'))
+ 
+
+  ggplot(data, aes(x = DATE, y = 'COUNTRY', fill = DEATHS)) +
+    geom_timeline(aes(size = EQ_PRIMARY), alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
+    geom_timeline_label(data = labels, mapping = aes(x = DATE, y = 'COUNTRY', label = LOCATION_NAME)) +
+    theme_minimal() + theme(panel.grid.minor.x = element_blank(),
+                            panel.grid.major.x = element_blank(),
+                            axis.line.y = element_blank(),
+                            axis.title.y = element_blank(),
+                            axis.line.x = element_line(),
+                            axis.ticks.x = element_line(),
+                            legend.position = 'bottom')
+```
