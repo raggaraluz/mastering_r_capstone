@@ -10,7 +10,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  message = FALSE
+  message = FALSE,
+  warning = FALSE
 )
 ```
 
@@ -100,9 +101,9 @@ labels <- data %>%
   top_earthquakes(10, ymd('2000-01-01'), ymd('2015-12-31'))
  
 
-  ggplot(data, aes(x = DATE, y = 'COUNTRY', fill = DEATHS)) +
+  ggplot(data, aes(x = DATE, y = COUNTRY, fill = DEATHS)) +
     geom_timeline(aes(size = EQ_PRIMARY), alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
-    geom_timeline_label(data = labels, mapping = aes(x = DATE, y = 'COUNTRY', label = LOCATION_NAME)) +
+    geom_timeline_label(data = labels, mapping = aes(x = DATE, y = COUNTRY, label = LOCATION_NAME)) +
     theme_minimal() + theme(panel.grid.minor.x = element_blank(),
                             panel.grid.major.x = element_blank(),
                             axis.line.y = element_blank(),

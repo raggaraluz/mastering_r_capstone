@@ -55,8 +55,8 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #'
 #' @rdname geom_timeline
 #' @examples
-#'
-#' ggplot(data, aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
+#' clean <- eq_clean_data(earthquake_data_raw)
+#' ggplot(clean, aes(x = DATE, y = COUNTRY, size=EQ_PRIMARY, fill = DEATHS)) +
 #'     geom_timeline(alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
 
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",

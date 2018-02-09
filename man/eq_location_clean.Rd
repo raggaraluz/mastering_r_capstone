@@ -21,7 +21,6 @@ to title case (as opposed to all caps). This function should be applied to the r
 up version of the LOCATION_NAME column.
 }
 \examples{
-raw <- readr::read_tsv('signif.txt')
-location_clean <- eq_location_clean(raw)
+location_clean <- eq_location_clean(earthquake_data_raw)
 
 }

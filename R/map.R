@@ -16,7 +16,9 @@
 #' @export
 #'
 #' @examples
-#' data %>%
+#' library(magrittr)
+#' earthquake_data_raw %>%
+#'   eq_clean_data %>%
 #'   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>%
 #'   eq_map(annot_col = "DATE")
 #'
@@ -54,10 +56,13 @@ eq_map <- function(data, annot_col) {
 #' @export
 #'
 #' @examples
-#' data %>%
-#'    filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>%
-#'    mutate(popup_text = eq_create_label(.)) %>%
-#'    eq_map(annot_col = "popup_text")
+#' library(magrittr)
+#' earthquake_data_raw %>%
+#'   eq_clean_data %>%
+#'   eq_location_clean %>%
+#'   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) %>%
+#'   mutate(popup_text = eq_create_label(.)) %>%
+#'   eq_map(annot_col = "popup_text")
 #'
 eq_create_label <- function(data) {
   # First of all, clean the location. It's not a problem if it is already clean

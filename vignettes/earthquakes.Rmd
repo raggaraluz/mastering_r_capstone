@@ -1,10 +1,10 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "NOAA Earthquake analysis"
+author: "Rafael García"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{NOAA Earthquake analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,7 +12,11 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 7,
+  fig.height = 5
 )
 ```
 
@@ -45,18 +49,23 @@ devtools::install_github("raggaraluz/mastering_r_capstone")
 
 Data can be downloaded from NOAA Significant Earthquake Database as TSV and converted to a data frame:
 
-```{r, cache=TRUE}
+```{r, eval = FALSE}
 library(readr)
 
 location <- 'https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt'
 raw <- read_tsv(location)
 ```
 
+Alternatively, a sample is stored into the package itself
+```{r}
+raw <- earthquakes::earthquake_data_raw
+```
+
 Then, the dataframe can be cleaned using the earthquakes package functions
 ```{r}
 library(earthquakes)
 library(dplyr)
-clean <- eq_clean_data(raw) %>%
+clean <- eq_clean_data(earthquake_data_raw) %>%
   eq_location_clean()
 
 knitr::kable(clean %>%
@@ -86,6 +95,29 @@ clean %>%
                             axis.ticks.x = element_line())
 ```
 
+The second geom is called `geom_timeline_label()` and is used for adding annotations to the earthquake data. This geom adds a vertical line to each data point with a text annotation (e.g. the location of the earthquake) attached to each line. There should be an option to subset to n_max number of earthquakes, where we take the n_max largest (by magnitude) earthquakes. Aesthetics are `x`, which is the date of the earthquake and `label` which takes the column name from which annotations will be obtained.
+
+```{r}
+
+data <- clean %>%
+  filter(COUNTRY %in% c('USA', 'CHINA'))
+
+labels <- data %>%
+  top_earthquakes(10, ymd('2000-01-01'), ymd('2015-12-31'))
+ 
+
+  ggplot(data, aes(x = DATE, y = COUNTRY, fill = DEATHS)) +
+    geom_timeline(aes(size = EQ_PRIMARY), alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
+    geom_timeline_label(data = labels, mapping = aes(x = DATE, y = COUNTRY, label = LOCATION_NAME)) +
+    theme_minimal() + theme(panel.grid.minor.x = element_blank(),
+                            panel.grid.major.x = element_blank(),
+                            axis.line.y = element_blank(),
+                            axis.title.y = element_blank(),
+                            axis.line.x = element_line(),
+                            axis.ticks.x = element_line(),
+                            legend.position = 'bottom')
+```
+
 ## Maps
 
 There is a function called eq_map() that takes an argument data containing the filtered data frame with earthquakes to visualize. The function maps the epicenters (LATITUDE/LONGITUDE) and annotates each point with in pop up window containing annotation data stored in a column of the data frame. The user should be able to choose which column is used for the annotation in the pop-up with a function argument named annot_col. Each earthquake should be shown with a circle, and the radius of the circle should be proportional to the earthquake's magnitude (EQ_PRIMARY). One example of this function is:
@@ -96,8 +128,6 @@ clean %>%
   eq_map(annot_col = "DATE")
 ```
 
-In this case, the image is static, but it is a full interactive map in R.
-
 Finally a function called eq_create_label() is available, so that it takes the dataset as an argument and creates an HTML label that can be used as the annotation text in the leaflet map. This function puts together a character string for each earthquake that will show the cleaned location (as cleaned by the eq_location_clean() function created in Module 1), the magnitude (EQ_PRIMARY), and the total number of deaths (TOTAL_DEATHS), with boldface labels for each ("Location", "Total deaths", and "Magnitude"). If an earthquake is missing values for any of these, both the label and the value should be skipped for that element of the tag. The resulting code is:
 
 ```{r}
@@ -107,6 +137,5 @@ clean %>%
   eq_map(annot_col = "popup_text")
 ```
 
-Again, the image is static, but it is a full interactive map in R.
 
 

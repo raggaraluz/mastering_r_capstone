@@ -27,9 +27,12 @@ missing values for any of these, both the label and the value should
 be skipped for that element of the tag
 }
 \examples{
-data \%>\%
-   filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) \%>\%
-   mutate(popup_text = eq_create_label(.)) \%>\%
-   eq_map(annot_col = "popup_text")
+library(magrittr)
+earthquake_data_raw \%>\%
+  eq_clean_data \%>\%
+  eq_location_clean \%>\%
+  filter(COUNTRY == "MEXICO" & year(DATE) >= 2000) \%>\%
+  mutate(popup_text = eq_create_label(.)) \%>\%
+  eq_map(annot_col = "popup_text")
 
 }

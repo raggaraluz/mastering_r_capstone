@@ -16,8 +16,7 @@
 #' @export
 #'
 #' @examples
-#' raw <- readr::read_tsv('signif.txt')
-#' clean <- eq_clean_data(raw)
+#' clean <- eq_clean_data(earthquake_data_raw)
 #'
 eq_clean_data <- function(raw) {
   raw %>%
@@ -45,8 +44,7 @@ eq_clean_data <- function(raw) {
 #' @export
 #'
 #' @examples
-#' raw <- readr::read_tsv('signif.txt')
-#' location_clean <- eq_location_clean(raw)
+#' location_clean <- eq_location_clean(earthquake_data_raw)
 #'
 eq_location_clean <- function(raw) {
   raw %>%

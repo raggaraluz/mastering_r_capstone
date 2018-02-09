@@ -13,8 +13,7 @@
 #' @export
 #'
 #' @examples
-#' data <- read_tsv('https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt')
-#' top_10 <- top_earthquakes(data, 10)
+#' top_10 <- top_earthquakes(earthquake_data_raw, 10)
 #'
 top_earthquakes <- function(data, n_max, date_min = -Inf, date_max = Inf) {
   data %>%

@@ -23,7 +23,6 @@ The clean data frame should have the following:
 }
 }
 \examples{
-raw <- readr::read_tsv('signif.txt')
-clean <- eq_clean_data(raw)
+clean <- eq_clean_data(earthquake_data_raw)
 
 }

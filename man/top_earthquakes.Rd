@@ -22,7 +22,6 @@ A dataframe with the filtered data
 Pick the top n_max earthquakes acoording to their magnitude.
 }
 \examples{
-data <- read_tsv('https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt')
-top_10 <- top_earthquakes(data, 10)
+top_10 <- top_earthquakes(earthquake_data_raw, 10)
 
 }

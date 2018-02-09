@@ -1,5 +1,31 @@
+#' Labels for timeline geom
+#'
+#' Labels for timeline geom for earthquake data
+#'
+#' TThis geom adds a vertical line to each data point with a text annotation
+#' (e.g. the location of the earthquake) attached to each line.
+#' Aesthetics are x, which is the date of the earthquake and label which
+#' takes the column name from which annotations will be obtained.
+#'
 #' @inheritParams ggplot2::geom_text
+#'
+#' @return Returns the geom for ggplot2 graphics
 #' @export
+#'
+#' @rdname geom_timeline_label
+#' @examples
+#' library(dplyr)
+#' clean <- eq_clean_data(earthquake_data_raw) %>%
+#'          eq_clean_location() %>%
+#'          filter(COUNTRY %in% c('USA', 'CHINA'))
+#'
+#' labels <- data %>%
+#'   top_earthquakes(10, ymd('2000-01-01'), ymd('2015-12-31'))
+#'
+#'
+#' ggplot(data, aes(x = DATE, y = COUNTRY, fill = DEATHS)) +
+#'   geom_timeline(aes(size = EQ_PRIMARY), alpha = 0.25, xmin = ymd('2000-01-01'), xmax = ymd('2015-12-31')) +
+#'   geom_timeline_label(data = labels, mapping = aes(x = DATE, y = COUNTRY, label = LOCATION_NAME))
 geom_timeline_label <- function(mapping = NULL, data = NULL,
                       stat = "identity",
                       position = "identity",
@@ -24,9 +50,8 @@ geom_timeline_label <- function(mapping = NULL, data = NULL,
 }
 
 
-#' @format NULL
-#' @usage NULL
-#' @export
+#' @rdname geom_timeline_label
+#' @importFrom magrittr "%>%"
 GeomTimelineLabel <- ggplot2::ggproto("GeomTimelineLabel", ggplot2::Geom,
                     required_aes = c("x", "label"),
 
